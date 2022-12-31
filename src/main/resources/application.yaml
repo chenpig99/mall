@@ -15,6 +15,10 @@ spring:
       view:
         prefix: /WEB-INF/jsp/
         suffix: .jsp
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #??sql??

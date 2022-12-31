@@ -5,6 +5,7 @@ import com.gec.mall.pojo.Commodity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface CommodityService extends IService<Commodity> {
 
     String purchase(Integer number, Integer id, HttpSession session);
 
-    void releaseCommodity(Commodity commodity, HttpSession session);
+    void releaseCommodity(Commodity commodity, HttpSession session) throws IOException;
 
 
     List queryOrder(Integer current);

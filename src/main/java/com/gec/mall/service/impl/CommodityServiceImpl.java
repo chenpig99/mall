@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.Currency;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +37,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private SellerService sellerService;
     @Resource
     private CommodityMapper commodityMapper;
+    public final static String IMG_PATH_PREFIX = "static/image";
     @Override
     public Page<Commodity> queryCommodity(Integer currentPage) {
         LambdaQueryWrapper<Commodity> wrapper = new LambdaQueryWrapper<>();
@@ -86,7 +87,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
      */
     @Override
     @Transactional
-    public void releaseCommodity(Commodity commodity, HttpSession session) {
+    public void releaseCommodity(Commodity commodity, HttpSession session) throws IOException {
         UserLogin user = (UserLogin)session.getAttribute("user");
         String account = user.getAccount();
         LambdaQueryWrapper<Seller> wrapper = new LambdaQueryWrapper<>();
@@ -94,7 +95,14 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         Seller one = sellerService.getOne(wrapper);
         Integer id = one.getId();
         commodity.setSellerId(id);
+        commodity.setPicture( session.getAttribute("pic")+"");
         this.save(commodity);
+        session.removeAttribute("pic");
+
+
+
+
+
     }
 
     /**

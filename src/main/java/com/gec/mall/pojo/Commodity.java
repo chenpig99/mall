@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
 /**
- * 
+ * 商品表
  * @TableName commodity
  */
 @TableName(value ="commodity")
@@ -47,6 +47,11 @@ public class Commodity implements Serializable {
      * 
      */
     private Integer sellerId;
+
+    /**
+     * 
+     */
+    private String picture;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -149,6 +154,20 @@ public class Commodity implements Serializable {
         this.sellerId = sellerId;
     }
 
+    /**
+     * 
+     */
+    public String getPicture() {
+        return picture;
+    }
+
+    /**
+     * 
+     */
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -167,7 +186,8 @@ public class Commodity implements Serializable {
             && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
             && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
             && (this.getInventory() == null ? other.getInventory() == null : this.getInventory().equals(other.getInventory()))
-            && (this.getSellerId() == null ? other.getSellerId() == null : this.getSellerId().equals(other.getSellerId()));
+            && (this.getSellerId() == null ? other.getSellerId() == null : this.getSellerId().equals(other.getSellerId()))
+            && (this.getPicture() == null ? other.getPicture() == null : this.getPicture().equals(other.getPicture()));
     }
 
     @Override
@@ -181,6 +201,7 @@ public class Commodity implements Serializable {
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
         result = prime * result + ((getInventory() == null) ? 0 : getInventory().hashCode());
         result = prime * result + ((getSellerId() == null) ? 0 : getSellerId().hashCode());
+        result = prime * result + ((getPicture() == null) ? 0 : getPicture().hashCode());
         return result;
     }
 
@@ -197,6 +218,7 @@ public class Commodity implements Serializable {
         sb.append(", price=").append(price);
         sb.append(", inventory=").append(inventory);
         sb.append(", sellerId=").append(sellerId);
+        sb.append(", picture=").append(picture);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

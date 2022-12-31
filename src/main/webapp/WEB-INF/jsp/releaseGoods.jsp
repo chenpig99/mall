@@ -80,6 +80,18 @@
                     <el-input type="textarea" v-model="form.description"></el-input>
                 </el-form-item>
                 <el-form-item>
+                    <el-upload
+                            class="upload-demo"
+                            limit="1"
+                            drag
+                            action="upload"
+                            multiple>
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb,只可上传一张图片</div>
+                    </el-upload>
+                </el-form-item>
+                <el-form-item>
                     <el-button type="primary" @click="onSubmit">立即发布</el-button>
                     <el-button @click="rest">重置</el-button>
                 </el-form-item>

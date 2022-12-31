@@ -82,10 +82,6 @@
                 <el-table-column
                         align="right">
                     <template slot="header" slot-scope="scope">
-                        <el-input
-                                v-model="search"
-                                size="mini"
-                                placeholder="输入关键字搜索"/>
                     </template>
                     <template slot-scope="scope">
                         <el-button
@@ -118,6 +114,9 @@
                 :before-close="handleClose">
             <span>详情描述：</span>
             <span>{{details}}</span>
+            <div class="demo-image__lazy">
+                <el-image  :src="pic" lazy></el-image>
+            </div>
             <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -164,8 +163,9 @@
                 description:'',
                 price:'',
                 inventory:'',
-
+                pic:''
             },
+            pic:'',
             search: ''
         },
         computed: {},
@@ -199,6 +199,8 @@
             handleEdit(index, row) {
                 console.log(index, row);
                 this.details=row.description
+                this.pic=row.picture
+                console.log(this.pic)
                 this.dialogVisible = true;
             },
             handleDelete(index, row) {

@@ -12,6 +12,7 @@
             <result property="price" column="price" jdbcType="FLOAT"/>
             <result property="inventory" column="inventory" jdbcType="INTEGER"/>
             <result property="sellerId" column="seller_id" jdbcType="INTEGER"/>
+        <result property="picture" column="picture" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
