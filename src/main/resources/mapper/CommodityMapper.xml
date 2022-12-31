@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gec.mall.mapper.CommodityMapper">
+
+    <resultMap id="BaseResultMap" type="com.gec.mall.pojo.Commodity">
+            <result property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="category" column="category" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="FLOAT"/>
+            <result property="inventory" column="inventory" jdbcType="INTEGER"/>
+            <result property="sellerId" column="seller_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,category,
+        description,price,inventory,
+        seller_id
+    </sql>
+    <select id="queryCommodtityByUserId"
+            resultType="com.gec.mall.pojo.Do.OrderDo">
+        SELECT od.*,be.name,be.`telephone`,be.`email`,co.`name` coName
+        FROM
+            `orders` od INNER
+                           JOIN buyer be ON be.`id`=od.`buyer_id`
+                       INNER JOIN commodity co ON co.id=od.`commodity_id`
+
+    </select>
+</mapper>
